@@ -54,26 +54,35 @@ To manage the massive parallel data flow, a strict hardware-level labeling syste
   Example: GPU1.C.1 (GPU Slot 1, CUDA Core 1).
 - Addressing Range: The labeling bit-depth must support massive scale. For 64-bit systems, we suggest reserving 32 bits for the ID/Label and 32 bits for the payload, ensuring we can address millions of CUDA-equivalent cores without overflow.
 
-#### 6. CHALLENGES & NECESSARY DEVELOPMENTS
+#### 6. THE CHROMATA-BIOS CONCEPT
+Chromata-Com requires a specialized firmware layer (based on modular open-source projects like coreboot or oreboot) to initialize the optical topology. Unlike traditional BIOS, it must manage wavelength calibration.
 
-**6.1 Signal Loss (The Splitting Problem)**
+| Phase | Aufgabe im Chromata-BIOS | Description |
+| :--- | :--- | :--- |
+| **Laser-Check** | Laser Calibration | Ignites all wavelengths sequentially to verify if the filters (Dichroic Cubes) are correctly aligned. |
+| **Label-Enumeration** | Hardware Discovery | Scans the optical bus: "Who is on frequency 1550nm?" -> Response: "CPU1.1 here". |
+| **Spectrum-Map** | Optical Routing Table | Creates a table in RAM identifying which core is reachable via which color (Wavelength Mapping). |
+
+#### 7. CHALLENGES & NECESSARY DEVELOPMENTS
+
+**7.1 Signal Loss (The Splitting Problem)**
 Using Beam Splitters divides the light intensity.
 - Solution Needed: Integrated optical amplifiers or High-Power Laser Sources must be used to ensure the signal remains readable after being split across 100+ cores.
 
-**6.2 Precise Filtering**
+**7.2 Precise Filtering**
 Home-building requires a way to align dichroic mirrors at a micrometer scale.
 - Implementation: Use of CNC-milled "sockets" in the glass board to snap-fit optical cubes into place, ensuring perfect 90-degree reflections.
 
-**6.3 The Software/Hardware Bridge**
+**7.3 The Software/Hardware Bridge**
 A specialized "Global Scheduler" must be developed to assign wavelengths dynamically. If CPU1.1 wants to talk to RAM1.5, it must tune its laser to the wavelength that RAM1.5 is filtered to receive.
 
-#### 7. APPLICATION IN EXTREME ENVIRONMENTS (REACTORS)
+#### 8. APPLICATION IN EXTREME ENVIRONMENTS (REACTORS)
 This architecture is uniquely suited for controlling high-energy systems (e.g., Antimatter Reactors):
 - EMI Immunity: Light is unaffected by the massive electromagnetic fields of a reactor.
 - Galvanic Isolation: There is no electrical connection between the reactor-side sensors and the control room PC.
 - Scalability: The "Pizza Box" size allows for easy cooling and modular replacement.
 
-#### 8. CONCLUSION
+#### 9. CONCLUSION
 By trading extreme miniaturization for optical speed and physical scale, we can democratize high-performance computing. Chromata-Com moves towards a modular, transparent, and physically logical architecture.
 
 ---
