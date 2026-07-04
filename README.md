@@ -7,7 +7,7 @@ A modular, large-scale hybrid computing architecture using Photonic Integrated C
 ## 🚀 The Vision
 Modern CPUs are limited by the "Nano-Wall": heat and latency at the sub-nanometer scale. **Chromata-Com** flips the script by scaling the architecture up to a "Pizza Box" format (e.g., 30x30cm), replacing electrical copper traces with optical waveguides. 
 
-This is not just a computer; it's a platform designed for extreme environments—like controlling **Antimatter Reactors**—where electromagnetic interference (EMI) would destroy traditional electronics.
+This is not just a computer; it's a platform designed for extreme environments-like controlling **Futuristic Reactors** or **Particle Accelerators (e.g. LHC at CERN)**, where electromagnetic interference (EMI) could destroy traditional electronics.
 
 ---
 
